@@ -1,0 +1,46 @@
+
+<ng-template #sinId>
+<table border = "1" class="table table-striped" >
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Título en original</th>
+            <th>Director</th>
+            <th>Fecha de estreno</th>
+            <th>Detalles</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+  
+    <tbody>
+        <tr *ngFor="let item of data">
+            <td>{{item.title}}</td>
+            <td>{{item.original_title}}</td>
+            <td>{{item.director}}</td>
+            <td>{{item.release_date}}</td>
+            <td><a [routerLink]="['/ghibli/',item.id]" class="btn btn-secondary">Detalles</a></td>
+            <td><a (click)="eliminar(item.id)" class="btn btn-danger">Eliminar</a></td>
+        </tr>
+    </tbody>
+</table>
+</ng-template>
+
+    <ng-container *ngIf=" id ; else sinId">
+
+       
+      <div *ngFor="let item of data">
+        <div *ngIf="item.id== id">
+          <div class="m-0 vh-100 row-justify-content-center align-items-center">
+            <div class = "col-auto p-5 text-center">
+              <img src="{{item.image}}" width="20%" height="20%">
+            <h4>{{item.title}}</h4>
+            <p>{{item.original_title}}</p>
+            <h5>Director: </h5><p>{{item.director}}</p>
+            <h5>Productor: </h5><p>{{item.producer}}</p>
+            <br>
+            <p>{{item.description}}</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
